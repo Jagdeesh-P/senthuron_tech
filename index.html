@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photography Studio</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hero-section {
+      background-image: url('https://images.unsplash.com/photo-1537633552985-df8429e8048b');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 150px 0;
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .stats-box {
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    .stats-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+
+    .stats-label {
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .featured-work {
+      padding: 80px 0;
+    }
+
+    .work-card {
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .work-card img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .work-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .services-section {
+      padding: 80px 0;
+      background-color: #f9f9f9;
+    }
+
+    .service-item {
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .service-icon {
+      color: #e74c3c;
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+
+    .testimonials {
+      padding: 80px 0;
+      background-color: #fff;
+    }
+
+    .testimonial-item {
+      text-align: center;
+      padding: 30px;
+    }
+
+    .testimonial-image {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 20px;
+    }
+
+    .gallery-section {
+      padding: 80px 0;
+      background-color: #f9f9f9;
+    }
+
+    .gallery-title {
+      font-size: 3rem;
+      margin-bottom: 40px;
+    }
+
+    .gallery-item {
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .btn-primary {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+      padding: 10px 25px;
+      border-radius: 30px;
+    }
+
+    .btn-primary:hover {
+      background-color: #c0392b;
+      border-color: #c0392b;
+    }
+
+    .btn-outline {
+      border: 2px solid #e74c3c;
+      color: #e74c3c;
+      background-color: transparent;
+      padding: 10px 25px;
+      border-radius: 30px;
+    }
+
+    .btn-outline:hover {
+      background-color: #e74c3c;
+      color: white;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 50px 0 20px;
+    }
+
+    .footer-links a {
+      color: #ddd;
+      margin-right: 15px;
+    }
+
+    .footer-links a:hover {
+      color: #e74c3c;
+      text-decoration: none;
+    }
+
+    .social-icons a {
+      color: white;
+      background-color: #444;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-right: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="home.html">PhotoStudio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="aboutus.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content text-center">
+      <h1 class="display-4">Capture Your Precious Moments</h1>
+      <p class="lead">We create beautiful memories that last forever</p>
+      <a class="btn btn-primary btn-lg mt-3" href="#contact" role="button">Book a Session</a>
+      
+      <div class="row mt-5">
+        <div class="col-md-3">
+          <div class="stats-box">
+            <div class="stats-number">1,000+</div>
+            <div class="stats-label">Clients</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stats-box">
+            <div class="stats-number">2,500+</div>
+            <div class="stats-label">Projects</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stats-box">
+            <div class="stats-number">10+</div>
+            <div class="stats-label">Years</div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stats-box">
+            <div class="stats-number">50+</div>
+            <div class="stats-label">Awards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Work Section -->
+  <section class="featured-work">
+    <div class="container">
+      <h2 class="text-center mb-5">Our Featured Work</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="work-card">
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc" alt="Wedding Photography">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-card">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552" alt="Family Photography">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="work-card">
+            <img src="https://images.unsplash.com/photo-1533854775446-95c8a5b7a101" alt="Portrait Photography">
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="#gallery" class="btn btn-outline">View More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <h2 class="text-center mb-5">Our Services</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="service-item">
+            <h4><i class="fas fa-camera service-icon"></i> Wedding Photography</h4>
+            <p>Capture the magic of your special day with our professional wedding photography services.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="service-item">
+            <h4><i class="fas fa-user service-icon"></i> Portrait Sessions</h4>
+            <p>Professional portrait photography for individuals, families, and corporate needs.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="service-item">
+            <h4><i class="fas fa-film service-icon"></i> Event Coverage</h4>
+            <p>Comprehensive photography coverage for all types of events and special occasions.</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="service-item">
+            <h4><i class="fas fa-edit service-icon"></i> Photo Editing</h4>
+            <p>Professional photo editing and retouching services to perfect your images.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2 class="text-center mb-5">What Our Clients Say</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="testimonial-item">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Client 1" class="testimonial-image">
+            <p>"The photos captured our wedding day perfectly. We couldn't be happier with the results!"</p>
+            <h5>Sarah Johnson</h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-item">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Client 2" class="testimonial-image">
+            <p>"Professional, creative, and a pleasure to work with. Our family portraits turned out amazing."</p>
+            <h5>Michael Brown</h5>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="testimonial-item">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80" alt="Client 3" class="testimonial-image">
+            <p>"Exceeded our expectations! The attention to detail and creativity was outstanding."</p>
+            <h5>Emily Davis</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery" class="gallery-section">
+    <div class="container">
+      <h2 class="text-center gallery-title">Gallery</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1519741347686-c1e0aadf4611" alt="Gallery Image 1">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1529634806980-85c3dd6d34ac" alt="Gallery Image 2">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b" alt="Gallery Image 3">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd" alt="Gallery Image 4">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1541250628459-d8a2eeea1599" alt="Gallery Image 5">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6" alt="Gallery Image 6">
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <a href="#" class="btn btn-primary">View All</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h4>PhotoStudio</h4>
+          <p>Creating beautiful memories that last a lifetime. Professional photography services for all your special moments.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <p><a href="#">Home</a></p>
+            <p><a href="#services">Services</a></p>
+            <p><a href="#gallery">Gallery</a></p>
+            <p><a href="#contact">Contact</a></p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" id="contact">
+          <h4>Contact Us</h4>
+          <p><i class="fas fa-map-marker-alt mr-2"></i> 123 Photography St, City, Country</p>
+          <p><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</p>
+          <p><i class="fas fa-envelope mr-2"></i> info@photostudio.com</p>
+        </div>
+      </div>
+      <div class="text-center pt-4">
+        <p>&copy; 2023 PhotoStudio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and Dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Smooth Scrolling JavaScript -->
+  <script>
+    $(document).ready(function(){
+      $('a[href^="#"]').on('click', function(event) {
+        var target = $(this.getAttribute('href'));
+        if( target.length ) {
+          event.preventDefault();
+          $('html, body').stop().animate({
+            scrollTop: target.offset().top
+          }, 1000);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

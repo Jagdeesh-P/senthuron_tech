@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Photography Studio</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .page-title {
+      color: #3498db;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .hero-section {
+      background-image: url('https://images.unsplash.com/photo-1511275539165-cc46b1ee89bf');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-section {
+      padding: 80px 0;
+    }
+
+    .service-list {
+      margin-top: 50px;
+    }
+
+    .service-item {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .service-item:hover {
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .service-header {
+      padding: 15px 20px;
+      background-color: #fff;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .service-header h5 {
+      margin: 0;
+      font-weight: 600;
+    }
+
+    .service-header img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 15px;
+    }
+
+    .service-header-content {
+      display: flex;
+      align-items: center;
+    }
+
+    .service-content {
+      padding: 20px;
+      background-color: #f9f9f9;
+      display: none;
+    }
+
+    .service-active .service-content {
+      display: block;
+    }
+
+    .service-active .service-header {
+      border-bottom: 1px solid #eee;
+    }
+
+    .red-circle {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: #e74c3c;
+      border-radius: 50%;
+      color: white;
+      text-align: center;
+      line-height: 40px;
+      font-size: 16px;
+    }
+
+    .portfolio-section {
+      padding: 80px 0;
+      background-color: #222;
+      color: white;
+      position: relative;
+    }
+
+    .portfolio-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #333 0%, #111 100%);
+    }
+
+    .portfolio-section .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .portfolio-title {
+      margin-bottom: 50px;
+    }
+
+    .portfolio-item {
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .portfolio-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .album-section {
+      padding: 80px 0;
+      background-color: #f9f9f9;
+      position: relative;
+    }
+
+    .album-book {
+      position: relative;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    .album-book img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .album-text {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .testimonials {
+      padding: 80px 0;
+      background-color: #fff;
+    }
+
+    .client-section {
+      padding: 80px 0;
+      background-color: #f9f9f9;
+    }
+
+    .client-images {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .client-image {
+      width: 120px;
+      height: 160px;
+      margin: 10px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transform: rotate(-5deg);
+      transition: transform 0.3s;
+    }
+
+    .client-image:nth-child(even) {
+      transform: rotate(5deg);
+    }
+
+    .client-image:hover {
+      transform: scale(1.05) rotate(0);
+      z-index: 10;
+    }
+
+    .client-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .btn-primary {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+      padding: 10px 25px;
+      border-radius: 30px;
+    }
+
+    .btn-primary:hover {
+      background-color: #c0392b;
+      border-color: #c0392b;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 50px 0 20px;
+    }
+
+    .footer-links a {
+      color: #ddd;
+      margin-right: 15px;
+    }
+
+    .footer-links a:hover {
+      color: #e74c3c;
+      text-decoration: none;
+    }
+
+    .social-icons a {
+      color: white;
+      background-color: #444;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-right: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="home.html">PhotoStudio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="aboutus.html">About Us</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-title container">
+    <h1>services</h1>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <div class="row">
+        <div class="col-md-8">
+          <h1>Capturing Special Moments with Professional Excellence</h1>
+          <p class="lead">Our comprehensive range of photography services</p>
+          <div class="red-circle mt-3">
+            <i class="fas fa-camera"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services-section">
+    <div class="container">
+      <h2 class="text-center">Our Services</h2>
+      <p class="text-center lead">We offer a wide range of professional photography services</p>
+      
+      <div class="service-list">
+        <!-- Service Item 1 -->
+        <div class="service-item service-active">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1511275539165-cc46b1ee89bf" alt="Wedding Photography">
+              <h5>Wedding Photography</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Our wedding photography service captures the magic and emotion of your special day. From the intimate moments to the grand celebrations, our photographers ensure every precious memory is preserved beautifully.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Service Item 2 -->
+        <div class="service-item">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1581952976147-5a2d15560349" alt="Pre-Wedding Shoots">
+              <h5>Pre-Wedding Shoots</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Create beautiful memories before your wedding day with our pre-wedding photography sessions. We'll help you choose stunning locations and capture your love story in a natural and romantic way.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Service Item 3 -->
+        <div class="service-item">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1518156677180-95a2893f3499" alt="Maternity Photography">
+              <h5>Maternity Photography</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Celebrate the beauty of motherhood with our maternity photography sessions. We create elegant, tasteful images that capture this special time in your life with sensitivity and artistry.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Service Item 4 -->
+        <div class="service-item">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9" alt="Portrait Photography">
+              <h5>Portrait Photography</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Our portrait photography captures your unique personality and essence. Whether for professional headshots or personal portraits, we create images that truly represent you.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Service Item 5 -->
+        <div class="service-item">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1533483595632-c5f0e57a1936" alt="Family Photography">
+              <h5>Family Photography</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Preserve precious family moments with our family photography sessions. We create natural, joyful images that capture the unique bond and personality of your family.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Service Item 6 -->
+        <div class="service-item">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad" alt="Event Photography">
+              <h5>Event Photography</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>From corporate functions to birthday celebrations, our event photography service ensures all the important moments of your event are captured professionally.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Service Item 7 -->
+        <div class="service-item">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1512253022256-19f4cb92a4dc" alt="Baby Photography">
+              <h5>Baby Photography</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Capture those fleeting early moments with our specialized baby photography. We create adorable, timeless images of your little one in a safe and comfortable environment.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Service Item 8 -->
+        <div class="service-item">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf" alt="Graduation Photography">
+              <h5>Graduation Photography</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Commemorate your academic achievement with our graduation photography services. We capture this milestone with images that reflect your accomplishment and personality.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Service Item 9 -->
+        <div class="service-item">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c" alt="Fashion Photography">
+              <h5>Fashion Photography</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Our fashion photography services highlight style and aesthetics with creative and dynamic images. Perfect for models, designers, and fashion brands looking to showcase their work.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+        
+        <!-- Service Item 10 -->
+        <div class="service-item">
+          <div class="service-header">
+            <div class="service-header-content">
+              <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e" alt="Product Photography">
+              <h5>Product Photography</h5>
+            </div>
+            <div class="red-circle">
+              <i class="fas fa-plus"></i>
+            </div>
+          </div>
+          <div class="service-content">
+            <p>Showcase your products in the best light with our professional product photography. We create high-quality images that highlight the features and appeal of your merchandise.</p>
+            <a href="#" class="btn btn-sm btn-primary">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section class="portfolio-section">
+    <div class="container">
+      <h2 class="text-center portfolio-title">A Glimpse of Our Creations</h2>
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
+          <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1511275539165-cc46b1ee89bf" alt="Portfolio 1">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552" alt="Portfolio 2">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b" alt="Portfolio 3">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd" alt="Portfolio 4">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1541250628459-d8a2eeea1599" alt="Portfolio 5">
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="portfolio-item">
+            <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6" alt="Portfolio 6">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Album Section -->
+  <section class="album-section">
+    <div class="container">
+      <h2 class="text-center mb-5">Preserve Your Memories In Style</h2>
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4">
+          <div class="album-book">
+            <img src="https://images.unsplash.com/photo-1518557984649-7b161c230cfa" alt="Photo Album">
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="album-text">
+            <h3>Premium Photo Albums</h3>
+            <p class="lead">We offer beautifully crafted photo albums to showcase your precious memories.</p>
+            <p>Our premium albums are made with high-quality materials and professional printing techniques to ensure your photos look stunning and last for generations.</p>
+            <a href="#" class="btn btn-primary mt-3">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Section -->
+  <section class="client-section">
+    <div class="container text-center">
+      <h2 class="mb-4">What Our Clients Say</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-4">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Client 1" class="rounded-circle" width="100">
+          <h5 class="mt-3">Michael Brown</h5>
+          <p class="font-italic">"The team captured our wedding day perfectly. Every emotion, every moment was beautifully preserved."</p>
+        </div>
+        <div class="col-md-4">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Client 2" class="rounded-circle" width="100">
+          <h5 class="mt-3">Sarah Johnson</h5>
+          <p class="font-italic">"Our family photos exceeded expectations. They captured our personalities so naturally."</p>
+        </div>
+        <div class="col-md-4">
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" alt="Client 3" class="rounded-circle" width="100">
+          <h5 class="mt-3">David Miller</h5>
+          <p class="font-italic">"Professional, creative, and a pleasure to work with. Highly recommend their services!"</p>
+        </div>
+      </div>
+      
+      <div class="client-images mt-5">
+        <div class="client-image">
+          <img src="https://images.unsplash.com/photo-1511275539165-cc46b1ee89bf" alt="Client Photo 1">
+        </div>
+        <div class="client-image">
+          <img src="https://images.unsplash.com/photo-1519741497674-611481863552" alt="Client Photo 2">
+        </div>
+        <div class="client-image">
+          <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b" alt="Client Photo 3">
+        </div>
+        <div class="client-image">
+          <img src="https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd" alt="Client Photo 4">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h4>PhotoStudio</h4>
+          <p>Creating beautiful memories that last a lifetime. Professional photography services for all your special moments.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <p><a href="home.html">Home</a></p>
+            <p><a href="aboutus.html">About Us</a></p>
+            <p><a href="services.html">Services</a></p>
+            <p><a href="#gallery">Gallery</a></p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" id="contact">
+          <h4>Contact Us</h4>
+          <p><i class="fas fa-map-marker-alt mr-2"></i> 123 Photography St, City, Country</p>
+          <p><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</p>
+          <p><i class="fas fa-envelope mr-2"></i> info@photostudio.com</p>
+        </div>
+      </div>
+      <div class="text-center pt-4">
+        <p>&copy; 2023 PhotoStudio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and Dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    $(document).ready(function(){
+      // Smooth scrolling
+      $('a[href^="#"]').on('click', function(event) {
+        var target = $(this.getAttribute('href'));
+        if( target.length ) {
+          event.preventDefault();
+          $('html, body').stop().animate({
+            scrollTop: target.offset().top
+          }, 1000);
+        }
+      });
+      
+      // Service accordion
+      $('.service-header').on('click', function() {
+        var serviceItem = $(this).parent();
+        if(serviceItem.hasClass('service-active')) {
+          serviceItem.removeClass('service-active');
+          $(this).find('.red-circle i').removeClass('fa-minus').addClass('fa-plus');
+        } else {
+          $('.service-item').removeClass('service-active');
+          $('.service-header .red-circle i').removeClass('fa-minus').addClass('fa-plus');
+          serviceItem.addClass('service-active');
+          $(this).find('.red-circle i').removeClass('fa-plus').addClass('fa-minus');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

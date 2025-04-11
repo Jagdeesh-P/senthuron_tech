@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Photography Studio</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Lightbox CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+  <!-- Custom CSS -->
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #333;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    .page-title {
+      color: #3498db;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+
+    .hero-section {
+      background-image: url('https://images.unsplash.com/photo-1520390138845-fd2d229dd553');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      padding: 100px 0;
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .gallery-section {
+      padding: 80px 0;
+    }
+
+    .gallery-category {
+      margin-bottom: 60px;
+    }
+
+    .category-title {
+      position: relative;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .category-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background-color: #e74c3c;
+    }
+
+    .gallery-item {
+      margin-bottom: 30px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-filter {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .filter-btn {
+      background-color: transparent;
+      border: 1px solid #ddd;
+      padding: 8px 20px;
+      margin: 0 5px 10px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+      color: white;
+    }
+
+    .memorable-section {
+      padding: 80px 0;
+      background-color: #f9f9f9;
+      position: relative;
+    }
+
+    .memorable-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('https://images.unsplash.com/photo-1520390138845-fd2d229dd553');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.05;
+    }
+
+    .memorable-section .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .memorable-title {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .memorable-item {
+      margin-bottom: 30px;
+    }
+
+    .memorable-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .client-photos {
+      padding: 80px 0;
+      background-color: #222;
+      color: white;
+      position: relative;
+    }
+
+    .client-photos::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #333 0%, #111 100%);
+    }
+
+    .client-photos .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .client-title {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .client-photo {
+      margin-bottom: 30px;
+    }
+
+    .client-photo img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    .client-photo:hover img {
+      transform: scale(1.05);
+    }
+
+    .gallery-cta {
+      padding: 60px 0;
+      background-color: #f9f9f9;
+      text-align: center;
+    }
+
+    .gallery-cta h3 {
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      background-color: #e74c3c;
+      border-color: #e74c3c;
+      padding: 10px 25px;
+      border-radius: 30px;
+    }
+
+    .btn-primary:hover {
+      background-color: #c0392b;
+      border-color: #c0392b;
+    }
+
+    .red-circle {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      background-color: #e74c3c;
+      border-radius: 50%;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      font-size: 20px;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      background-color: #222;
+      color: white;
+      padding: 50px 0 20px;
+    }
+
+    .footer-links a {
+      color: #ddd;
+      margin-right: 15px;
+    }
+
+    .footer-links a:hover {
+      color: #e74c3c;
+      text-decoration: none;
+    }
+
+    .social-icons a {
+      color: white;
+      background-color: #444;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      margin-right: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .social-icons a:hover {
+      background-color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="home.html">PhotoStudio</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="aboutus.html">About Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services.html">Services</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="profile.html">Profile</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-title container">
+    <h1>gallery</h1>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-content">
+      <div class="row">
+        <div class="col-md-8">
+          <h1>Our Creations & Masterpieces</h1>
+          <p class="lead">A showcase of our finest photography work</p>
+          <div class="red-circle mt-3">
+            <i class="fas fa-images"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Filter Section -->
+  <section class="gallery-section">
+    <div class="container">
+      <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="wedding">Wedding</button>
+        <button class="filter-btn" data-filter="portrait">Portrait</button>
+        <button class="filter-btn" data-filter="family">Family</button>
+        <button class="filter-btn" data-filter="event">Event</button>
+        <button class="filter-btn" data-filter="fashion">Fashion</button>
+      </div>
+
+      <!-- Wedding Photography -->
+      <div class="gallery-category" id="wedding">
+        <h2 class="category-title">Wedding Photography</h2>
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1511275539165-cc46b1ee89bf" data-lightbox="wedding" data-title="Beautiful Wedding Ceremony">
+                <img src="https://images.unsplash.com/photo-1511275539165-cc46b1ee89bf" alt="Wedding Photo 1">
+                <div class="gallery-item-overlay">
+                  <h5>Beautiful Wedding Ceremony</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1519741497674-611481863552" data-lightbox="wedding" data-title="Romantic Couple">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552" alt="Wedding Photo 2">
+                <div class="gallery-item-overlay">
+                  <h5>Romantic Couple</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1537633552985-df8429e8048b" data-lightbox="wedding" data-title="Wedding Details">
+                <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b" alt="Wedding Photo 3">
+                <div class="gallery-item-overlay">
+                  <h5>Wedding Details</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd" data-lightbox="wedding" data-title="First Dance">
+                <img src="https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd" alt="Wedding Photo 4">
+                <div class="gallery-item-overlay">
+                  <h5>First Dance</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6" data-lightbox="wedding" data-title="Wedding Rings">
+                <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6" alt="Wedding Photo 5">
+                <div class="gallery-item-overlay">
+                  <h5>Wedding Rings</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1507504031003-b417219a0fde" data-lightbox="wedding" data-title="Bridal Portrait">
+                <img src="https://images.unsplash.com/photo-1507504031003-b417219a0fde" alt="Wedding Photo 6">
+                <div class="gallery-item-overlay">
+                  <h5>Bridal Portrait</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Portrait Photography -->
+      <div class="gallery-category" id="portrait">
+        <h2 class="category-title">Portrait Photography</h2>
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9" data-lightbox="portrait" data-title="Professional Portrait">
+                <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9" alt="Portrait Photo 1">
+                <div class="gallery-item-overlay">
+                  <h5>Professional Portrait</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" data-lightbox="portrait" data-title="Natural Light Portrait">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d" alt="Portrait Photo 2">
+                <div class="gallery-item-overlay">
+                  <h5>Natural Light Portrait</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1494790108377-be9c29b29330" data-lightbox="portrait" data-title="Studio Portrait">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Portrait Photo 3">
+                <div class="gallery-item-overlay">
+                  <h5>Studio Portrait</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" data-lightbox="portrait" data-title="Business Portrait">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e" alt="Portrait Photo 4">
+                <div class="gallery-item-overlay">
+                  <h5>Business Portrait</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1534528741775-53994a69daeb" data-lightbox="portrait" data-title="Fashion Portrait">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb" alt="Portrait Photo 5">
+                <div class="gallery-item-overlay">
+                  <h5>Fashion Portrait</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery-item">
+              <a href="https://images.unsplash.com/photo-1544005313-94ddf0286df2" data-lightbox="portrait" data-title="Artistic Portrait">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2" alt="Portrait Photo 6">
+                <div class="gallery-item-overlay">
+                  <h5>Artistic Portrait</h5>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Memorable Moments Section -->
+  <section class="memorable-section">
+    <div class="container">
+      <h2 class="memorable-title">Memorable Moments</h2>
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="memorable-item">
+            <a href="https://images.unsplash.com/photo-1533483595632-c5f0e57a1936" data-lightbox="memorable" data-title="Family Gathering">
+              <img src="https://images.unsplash.com/photo-1533483595632-c5f0e57a1936" alt="Memorable 1">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="memorable-item">
+            <a href="https://images.unsplash.com/photo-1518156677180-95a2893f3499" data-lightbox="memorable" data-title="Maternity">
+              <img src="https://images.unsplash.com/photo-1518156677180-95a2893f3499" alt="Memorable 2">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="memorable-item">
+            <a href="https://images.unsplash.com/photo-1512253022256-19f4cb92a4dc" data-lightbox="memorable" data-title="Baby Photography">
+              <img src="https://images.unsplash.com/photo-1512253022256-19f4cb92a4dc" alt="Memorable 3">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="memorable-item">
+            <a href="https://images.unsplash.com/photo-1520854221256-17451cc331bf" data-lightbox="memorable" data-title="Graduation">
+              <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf" alt="Memorable 4">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="memorable-item">
+            <a href="https://images.unsplash.com/photo-1543269865-cbf427effbad" data-lightbox="memorable" data-title="Event">
+              <img src="https://images.unsplash.com/photo-1543269865-cbf427effbad" alt="Memorable 5">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="memorable-item">
+            <a href="https://images.unsplash.com/photo-1496747611176-843222e1e57c" data-lightbox="memorable" data-title="Fashion">
+              <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c" alt="Memorable 6">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="memorable-item">
+            <a href="https://images.unsplash.com/photo-1542038784456-1ea8e935640e" data-lightbox="memorable" data-title="Product">
+              <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e" alt="Memorable 7">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="memorable-item">
+            <a href="https://images.unsplash.com/photo-1581952976147-5a2d15560349" data-lightbox="memorable" data-title="Pre-Wedding">
+              <img src="https://images.unsplash.com/photo-1581952976147-5a2d15560349" alt="Memorable 8">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Photos Section -->
+  <section class="client-photos">
+    <div class="container">
+      <h2 class="client-title">Our Client Photos</h2>
+      <div class="row">
+        <div class="col-md-3 col-sm-6">
+          <div class="client-photo">
+            <a href="https://images.unsplash.com/photo-1511285560929-80b456fea0bc" data-lightbox="client" data-title="Client Photo 1">
+              <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc" alt="Client 1">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="client-photo">
+            <a href="https://images.unsplash.com/photo-1541250628459-d8a2eeea1599" data-lightbox="client" data-title="Client Photo 2">
+              <img src="https://images.unsplash.com/photo-1541250628459-d8a2eeea1599" alt="Client 2">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="client-photo">
+            <a href="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126" data-lightbox="client" data-title="Client Photo 3">
+              <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126" alt="Client 3">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="client-photo">
+            <a href="https://images.unsplash.com/photo-1546961329-78bef0414d7c" data-lightbox="client" data-title="Client Photo 4">
+              <img src="https://images.unsplash.com/photo-1546961329-78bef0414d7c" alt="Client 4">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="client-photo">
+            <a href="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d" data-lightbox="client" data-title="Client Photo 5">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d" alt="Client 5">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="client-photo">
+            <a href="https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd" data-lightbox="client" data-title="Client Photo 6">
+              <img src="https://images.unsplash.com/photo-1519742866993-66d3cfef4bbd" alt="Client 6">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="client-photo">
+            <a href="https://images.unsplash.com/photo-1519741497674-611481863552" data-lightbox="client" data-title="Client Photo 7">
+              <img src="https://images.unsplash.com/photo-1519741497674-611481863552" alt="Client 7">
+            </a>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="client-photo">
+            <a href="https://images.unsplash.com/photo-1537633552985-df8429e8048b" data-lightbox="client" data-title="Client Photo 8">
+              <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b" alt="Client 8">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery CTA Section -->
+  <section class="gallery-cta">
+    <div class="container">
+      <h3>Ready to Create Your Own Beautiful Memories?</h3>
+      <p>Contact us today to book your photography session</p>
+      <a href="#contact" class="btn btn-primary mt-3">Contact Us</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h4>PhotoStudio</h4>
+          <p>Creating beautiful memories that last a lifetime. Professional photography services for all your special moments.</p>
+          <div class="social-icons mt-3">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h4>Quick Links</h4>
+          <div class="footer-links">
+            <p><a href="home.html">Home</a></p>
+            <p><a href="aboutus.html">About Us</a></p>
+            <p><a href="services.html">Services</a></p>
+            <p><a href="gallery.html">Gallery</a></p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4" id="contact">
+          <h4>Contact Us</h4>
+          <p><i class="fas fa-map-marker-alt mr-2"></i> 123 Photography St, City, Country</p>
+          <p><i class="fas fa-phone mr-2"></i> +1 (555) 123-4567</p>
+          <p><i class="fas fa-envelope mr-2"></i> info@photostudio.com</p>
+        </div>
+      </div>
+      <div class="text-center pt-4">
+        <p>&copy; 2023 PhotoStudio. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS and Dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- Lightbox JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <!-- Custom JavaScript -->
+  <script>
+    $(document).ready(function(){
+      // Smooth scrolling
+      $('a[href^="#"]').on('click', function(event) {
+        var target = $(this.getAttribute('href'));
+        if( target.length ) {
+          event.preventDefault();
+          $('html, body').stop().animate({
+            scrollTop: target.offset().top
+          }, 1000);
+        }
+      });
+      
+      // Gallery filtering
+      $('.filter-btn').on('click', function() {
+        var filterValue = $(this).attr('data-filter');
+        
+        // Update active button
+        $('.filter-btn').removeClass('active');
+        $(this).addClass('active');
+        
+        // Show/hide categories
+        if (filterValue === 'all') {
+          $('.gallery-category').show();
+        } else {
+          $('.gallery-category').hide();
+          $('#' + filterValue).show();
+        }
+      });
+      
+      // Initialize Lightbox
+      lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true,
+        'albumLabel': "Image %1 of %2",
+        'fadeDuration': 300,
+        'showImageNumberLabel': true
+      });
+    });
+  </script>
+</body>
+</html>
